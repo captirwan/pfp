@@ -4,79 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom PFP Generator</title>
-    <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        canvas { border: 2px solid #333; display: block; margin: 20px auto; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Custom PFP Generator</h2>
-    
-    <!-- Pilihan Custom Karakter -->
-    <label>Rambut:</label>
-    <select id="hair">
-        <option value="hair1.png">Poni</option>
-        <option value="hair2.png">Keriting</option>
-        <option value="hair3.png">Panjang</option>
-    </select>
 
-    <label>Mata:</label>
-    <select id="eyes">
-        <option value="eyes1.png">Bulat</option>
-        <option value="eyes2.png">Sipit</option>
-        <option value="eyes3.png">Besar</option>
-    </select>
+    <!-- Pilihan Elemen Karakter -->
+    <div class="controls">
+        <label>Rambut:</label>
+        <select id="hair">
+            <option value="hair1.png">Poni</option>
+            <option value="hair2.png">Keriting</option>
+            <option value="hair3.png">Panjang</option>
+        </select>
 
-    <label>Pakaian:</label>
-    <select id="clothes">
-        <option value="clothes1.png">Kaos</option>
-        <option value="clothes2.png">Jaket</option>
-        <option value="clothes3.png">Jubah</option>
-    </select>
+        <label>Mata:</label>
+        <select id="eyes">
+            <option value="eyes1.png">Bulat</option>
+            <option value="eyes2.png">Sipit</option>
+            <option value="eyes3.png">Besar</option>
+        </select>
 
-    <button id="generate">Tampilkan</button>
-    <button id="download">Download PFP</button>
+        <label>Pakaian:</label>
+        <select id="clothes">
+            <option value="clothes1.png">Kaos</option>
+            <option value="clothes2.png">Jaket</option>
+            <option value="clothes3.png">Jubah</option>
+        </select>
 
-    <!-- Canvas untuk Menampilkan Karakter -->
+        <label>Topi:</label>
+        <select id="hat">
+            <option value="none">Tidak Ada</option>
+            <option value="hat1.png">Topi Baseball</option>
+            <option value="hat2.png">Topi Koboi</option>
+            <option value="hat3.png">Beanie</option>
+        </select>
+
+        <label>Kacamata:</label>
+        <select id="glasses">
+            <option value="none">Tidak Ada</option>
+            <option value="glasses1.png">Kacamata Hitam</option>
+            <option value="glasses2.png">Kacamata Bulat</option>
+            <option value="glasses3.png">Kacamata Gaming</option>
+        </select>
+
+        <button id="randomize">Randomize</button>
+        <button id="download">Download PFP</button>
+    </div>
+
+    <!-- Canvas untuk Preview PFP -->
     <canvas id="canvas" width="300" height="300"></canvas>
 
-    <script>
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
-
-        const hairSelect = document.getElementById("hair");
-        const eyesSelect = document.getElementById("eyes");
-        const clothesSelect = document.getElementById("clothes");
-        const generateBtn = document.getElementById("generate");
-        const downloadBtn = document.getElementById("download");
-
-        // Fungsi untuk menggambar karakter berdasarkan pilihan
-        function drawCharacter() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            const hair = new Image();
-            const eyes = new Image();
-            const clothes = new Image();
-
-            hair.src = `assets/${hairSelect.value}`;
-            eyes.src = `assets/${eyesSelect.value}`;
-            clothes.src = `assets/${clothesSelect.value}`;
-
-            hair.onload = () => ctx.drawImage(hair, 0, 0, 300, 300);
-            eyes.onload = () => ctx.drawImage(eyes, 0, 0, 300, 300);
-            clothes.onload = () => ctx.drawImage(clothes, 0, 0, 300, 300);
-        }
-
-        // Event listener untuk tombol generate
-        generateBtn.addEventListener("click", drawCharacter);
-
-        // Fungsi untuk download PFP
-        downloadBtn.addEventListener("click", () => {
-            const link = document.createElement("a");
-            link.download = "custom_pfp.png";
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
